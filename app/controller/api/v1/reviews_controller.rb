@@ -22,10 +22,12 @@ class ReviewsController < ApplicationController
             render json: @review
         else
             render json: @review.errors, status: :unprocessable_entity
+        end
+
     end
 
     def destroy
-
+        @review.destroy
     end
 
     private

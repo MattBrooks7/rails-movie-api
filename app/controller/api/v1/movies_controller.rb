@@ -10,7 +10,8 @@ class API::V1::MoviesController < ApplicationController
 
     #GET /movie/v1
     def show
-        render json: {movie: @movies }
+        @reviews = Review.where(movie_id: params[:id])
+        render json: {movie: @movies, reviews: @reviews }
     end
 
     #POST /movies
@@ -32,7 +33,7 @@ class API::V1::MoviesController < ApplicationController
 
     #DELETE /movie/v1
     def destroy
-        @movies.destroy
+        @movie.destroy
     end
 
     private
