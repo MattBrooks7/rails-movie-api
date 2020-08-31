@@ -45,12 +45,12 @@ class API::V1::MoviesController < ApplicationController
         @secretKey = ENV ['S3_SECRET']
         render json: {acessKey: @accessKey, secretKey: @secretKey}
     end
-    
+
     private
     #Methods we place in private can only be accessedby other methods on our movie controller
 
     def set_movie
-        @Movie = Movie.find(params[:id])
+        @movie = Movie.find(params[:id])
     end
 
     def movie_params
