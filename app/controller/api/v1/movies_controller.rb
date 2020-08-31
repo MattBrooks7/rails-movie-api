@@ -21,6 +21,8 @@ class API::V1::MoviesController < ApplicationController
             render json: @movie
         else
             render json: @movie.errors, status: :unprocessable_entity
+    
+        end
     end
 
     #PATCH/PUT /movies/v1
@@ -36,6 +38,14 @@ class API::V1::MoviesController < ApplicationController
         @movie.destroy
     end
 
+
+# Get our Amazon S3 keys for image uploads
+    def get_upload_credentials
+        @accessKey = ENV['S3_ACCESS']
+        @secretKey = ENV ['S3_SECRET']
+        render json: {acessKey: @accessKey, secretKey: @secretKey}
+    end
+    
     private
     #Methods we place in private can only be accessedby other methods on our movie controller
 
