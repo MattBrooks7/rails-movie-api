@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+before_action :set_review, only: [:show, :update, :destroy]
+skip_before_action :authenticate, only: [:index, :show]
     
     def index
         @reviews = Review.all
@@ -12,7 +14,7 @@ class ReviewsController < ApplicationController
     def create
         @review = Review.new(review_params)
         if @review.save
-            render json: @review, status: created
+            render json: @review, status: :created
         else
             render json: @review.errors, status: :unprocessable_entity
     end
@@ -31,6 +33,9 @@ class ReviewsController < ApplicationController
     end
 
     private
+    def set_review
+        @review = Review.find(params[:id])
+    end
 
     def review_params
         params.require(:review).permit(:body, :movie_id, :user_id, :rating)
