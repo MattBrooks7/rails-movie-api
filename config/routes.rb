@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  namespace :api, defaults: ( format :json ) do
+  namespace :api, defaults: { format: :json } do
     namespace :v1 do 
       namespace :users do
         post :login #api/v1/users/login
