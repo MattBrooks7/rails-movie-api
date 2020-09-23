@@ -5,7 +5,7 @@ class API::V1::MoviesController < ApplicationController
 
     def index
         @movies = Movie.all
-        redner json: @movies
+        render json: @movies
     end
 
     #GET /movie/v1
@@ -31,6 +31,7 @@ class API::V1::MoviesController < ApplicationController
             render json: @movie
         else
             render json: @movie.errors, status: :unprocessable_entity
+        end
     end
 
     #DELETE /movie/v1
