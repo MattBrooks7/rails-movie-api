@@ -8,12 +8,12 @@ class API::V1::UsersController < ApplicationController
 
     def create
         @user = UsersService.register(params[:email], params[:first_name], params[:last_name], params[:nickname], params[:password], params[:password_confirmation])
-        render json: { error: "There was a problem saving your user" }, status: unprocessible_entity and return unless @user 
+        render json: { error: "There was a problem saving your user" }, status: unprocessable_entity and return unless @user 
         render json: @user.profile status: :ok
     end
 
     def logout
-        render json: { error: "There was a problem logging out" }, status: unprocessible_entity and return unless UsersService.logout(@current_user)
+        render json: { error: "There was a problem logging out" }, status: unprocessable_entity and return unless UsersService.logout(@current_user)
         render json: { success: "You have logged out" }, status: :ok
     end
 

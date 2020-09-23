@@ -4,7 +4,7 @@ class User < ApplicationRecord
     has_secure_password
 
     def generate_token!
-        update_attribute name :Token, AccessToken.new(self.generate_token!)
+        update_attribute :token, AccessToken.new(self).generate
     end
 
     def profile
