@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-include ActionConroller::HttpAuthentication::Token::ConrollerMethods
+include ActionController::HttpAuthentication::Token::ControllerMethods
 
 before_action :authenticate
 
