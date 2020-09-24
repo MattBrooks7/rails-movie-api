@@ -1,7 +1,7 @@
 require 'digest/sha1'
 class AccessToken
 
-    def intialize(model)
+    def initialize(model)
         @model = model
     end
 
