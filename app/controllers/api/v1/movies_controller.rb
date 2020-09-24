@@ -1,4 +1,4 @@
-class API::V1::MoviesController < ApplicationController
+class Api::V1::MoviesController < ApplicationController
     before_action :set_movie, only: [:show, :update, :destroy]
     skip_before_action :authenticate, only: [:index, :show]
     #GET /movies
@@ -8,7 +8,7 @@ class API::V1::MoviesController < ApplicationController
         render json: @movies
     end
 
-    #GET /movie/v1
+    #GET /movie/1
     def show
         @reviews = Review.where(movie_id: params[:id])
         render json: {movie: @movies, reviews: @reviews }
@@ -20,12 +20,11 @@ class API::V1::MoviesController < ApplicationController
         if @movie.save
             render json: @movie
         else
-            render json: @movie.errors, status: :unprocessable_entity
-    
+            render json: @movie.errors, status: :unprocessable_entity   
         end
     end
 
-    #PATCH/PUT /movies/v1
+    #PATCH/PUT /movies/1
     def update
         if @movie.update(movie_params)
             render json: @movie
@@ -34,7 +33,7 @@ class API::V1::MoviesController < ApplicationController
         end
     end
 
-    #DELETE /movie/v1
+    #DELETE /movie/1
     def destroy
         @movie.destroy
     end
@@ -48,7 +47,7 @@ class API::V1::MoviesController < ApplicationController
     end
 
     private
-    #Methods we place in private can only be accessedby other methods on our movie controller
+    #Methods we place in private can only be accessed by other methods on our movie controller
 
     def set_movie
         @movie = Movie.find(params[:id])
