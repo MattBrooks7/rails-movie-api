@@ -1,10 +1,10 @@
-class ReviewsController < ApplicationController
+class Api::V1::ReviewsController < ApplicationController
 before_action :set_review, only: [:show, :update, :destroy]
 skip_before_action :authenticate, only: [:index, :show]
     
     def index
         @reviews = Review.all
-        render json :@reviews
+        render json: @reviews
     end
 
     def show
@@ -17,6 +17,7 @@ skip_before_action :authenticate, only: [:index, :show]
             render json: @review, status: :created
         else
             render json: @review.errors, status: :unprocessable_entity
+        end
     end
     
     def update
@@ -25,7 +26,6 @@ skip_before_action :authenticate, only: [:index, :show]
         else
             render json: @review.errors, status: :unprocessable_entity
         end
-
     end
 
     def destroy
