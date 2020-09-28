@@ -28,15 +28,15 @@ class CustomError
     end
 
     def convert(errors)
-        calss.type =  errors.class.to_sentence
+        class_type =  errors.class.to_sentence
         messages = []
         #concert to a message array based on the type pass in
         #if it's an active model's error object
-        messages = errors.full_message if class_type = 'ActiveModel::Errors'
+        messages = errors.full_message if class_type == 'ActiveModel::Errors'
         #if it's an array
         messages = errors if class_type == 'Array'
         #if it's an active model object
-        messages = errors&.errors&.full_message || [] unless class_type.in?(%w[Array ActiveModel::Errors])
+        messages = errors&.errors&.full_messages || [] unless class_type.in?(%w[Array ActiveModel::Errors])
         #loop over the messages, adding them to the errors array
         messages.each { |error| @errors << error}
         self

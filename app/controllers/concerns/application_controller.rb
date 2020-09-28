@@ -15,7 +15,7 @@ before_action :authenticate
     end
 
     def render_unauthorized
-        logger.debug "*** UNAUTHORIZED REQUEST: '#{REQUEST.ENV['HTTP_AUTHORIZATION']}' ***"
+        logger.debug "*** UNAUTHORIZED REQUEST: '#{request.env['HTTP_AUTHORIZATION']}' ***"
         self.headers['add-Authentiate'] = 'Token realm="Application"'
         render json: {error: "Bad credentials" }, status: 401
     end

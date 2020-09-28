@@ -8,6 +8,7 @@ Rails.application.routes.draw do
         delete :logout
         get :me
       end
+
       namespace :movies do 
         get :index
         get :show
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
         delete :destroy
         get :get_upload_credentials
       end
+      
       namespace :reviews do 
         get :index
         get :show
