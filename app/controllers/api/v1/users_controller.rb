@@ -8,7 +8,7 @@ class Api::V1::UsersController < ApplicationController
 
     def create
         @user = UsersService.register(params[:email], params[:first_name], params[:last_name], params[:nickname], params[:password], params[:password_confirmation])
-        render json: { error: "There was a problem saving your user" }, status: unprocessable_entity and return unless @user 
+        render json: { error: "There was a problem saving your user" }, status: :unprocessable_entity and return unless @user 
         render json: @user.profile, status: :ok
     end
 
