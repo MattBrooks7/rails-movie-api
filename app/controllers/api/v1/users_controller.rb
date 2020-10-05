@@ -13,7 +13,7 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def logout
-        render json: { error: "There was a problem logging out" }, status: unprocessable_entity and return unless UsersService.logout(@current_user)
+        render json: { error: "There was a problem logging out" }, status: :unprocessable_entity and return unless UsersService.logout(@current_user)
         render json: { success: "You have logged out" }, status: :ok
     end
 
