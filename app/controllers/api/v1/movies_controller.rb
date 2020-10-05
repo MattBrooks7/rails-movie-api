@@ -11,7 +11,7 @@ class Api::V1::MoviesController < ApplicationController
     #GET /movie/1
     def show
         @reviews = Review.where(movie_id: params[:id])
-        render json: {movie: @movies, reviews: @reviews }
+        render json: {movie: @movies, reviews: @reviews}
     end
 
     #POST /movies
@@ -42,7 +42,7 @@ class Api::V1::MoviesController < ApplicationController
 # Get our Amazon S3 keys for image uploads
     def get_upload_credentials
         @accessKey = ENV['S3_ACCESS']
-        @secretKey = ENV ['S3_SECRET']
+        @secretKey = ENV['S3_SECRET']
         render json: {acessKey: @accessKey, secretKey: @secretKey}
     end
 
@@ -56,6 +56,5 @@ class Api::V1::MoviesController < ApplicationController
     def movie_params
         params.require(:movie).permit(:title, :description, :parental_rating, :year, :total_gross, :duration, :image, :cast, :director)
     end
-
-
+    
 end
