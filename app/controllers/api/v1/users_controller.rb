@@ -2,7 +2,7 @@ class Api::V1::UsersController < ApplicationController
     skip_before_action :authenticate, only: [:login, :create]
 
     def login
-        render json: { error: "User not authenticated" }, status: 401 and return unless @user = UsersService.login(params[:email], params[password])
+        render json: { error: "User not authenticated" }, status: 401 and return unless @user = UsersService.login(params[:email], params[:password])
         render json: @user.profile, status: :ok 
     end
 
